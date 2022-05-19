@@ -80,9 +80,19 @@
             @endif
 
             <div class="content">
+
+                @if (auth::check())
+                <div class="title m-b-md">
+                    Welcome {{auth::user()['name']}} !!
+                </div>
+                    
+                @else
                 <div class="title m-b-md">
                     Laravel
                 </div>
+                @endif
+
+                
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>

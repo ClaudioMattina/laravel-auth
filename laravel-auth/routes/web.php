@@ -22,3 +22,16 @@ Auth::routes();
 Route::middleware('auth')->get('/admin', 'Admin\HomeController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+/* middleware filtra, in questo caso chi è loggato */
+/* namespace('Admin) specifica la cartella dove si trova il controller che poi porterà alla corrispettiva view */
+/* prefix aggiunge 'admin' come prefisso agli URI */
+/* name aggiunge ai nomi il prefisso 'admin.' */
+
+Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
+    /* si inserisce le rotte per chi è loggato */
+    Route::get('/','HomeController@index');
+
+    Route::resource('posts','PostController');
+});
